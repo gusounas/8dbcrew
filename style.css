@@ -21,7 +21,7 @@ body::before {
     z-index: -1; /* Garante que a imagem fique atrás de todo o conteúdo */
     
     /* Substitua o link abaixo pela URL da sua imagem de preferência */
-    background-image: url('C:/Users/HP/Desktop/teste/img/background.jpg');
+    background-image: url('./img/background.jpg');
     background-position: center; /* Centraliza a imagem na tela */
     background-repeat: no-repeat; /* Não deixa a imagem se repetir */
     background-size: cover; /* Faz a imagem cobrir a tela inteira sem distorcer */
@@ -259,6 +259,4 @@ opacity: 1; /* Define a transparência (0.0 totalmente invisível a 1.0 totalmen
     transform: translateY(-2px); /* Dá um leve efeito de flutuar */
     box-shadow: 0 4px 10px rgba(225, 48, 108, 0.3); /* Adiciona uma sombra rosa */
 }
-
-
 
