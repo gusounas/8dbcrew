@@ -2,109 +2,143 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Cabeças vao rolar</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabeças vão rolar</title>
     <!-- Linha que conecta o HTML ao CSS -->
     <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Font Awesome para os ícones funcionarem -->
+    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
+
 <!-- Caixa da Marca com Imagem Estática -->
 <div class="marca-topo">
     <img src="img/logo.png" alt="Logotipo da Marca">
 </div>
-<!-- NOVO: Caixa da Marca no Topo Esquerdo -->
-    <div class="marca-topo">
-       
-         
-         <!-- ...OU substituir pela URL de uma imagem/logotipo tirando as barras de comentário abaixo: -->
-         <!-- <img src="img/logo.png" alt="Logo"> -->
-     </div>
 
-     <!-- O "card" que vai guardar todas as informações -->
-     <div class="card">
-         <!-- Imagem de perfil (usando um link temporário da internet) -->
-         <img src="img/profile.jpg" alt="Foto de Perfil" class="foto-perfil">
-         
-         <h1>INSCREVA-SE</h1>
-         <p class="subtitulo">Evento de Graffiti 
- 				<br><h2>Cabeças vao Rolar</h2></br>
- 	</p>
-<!-- NOVO: Link do Instagram com ícone dentro do Card -->
-<div class="instagram-card-container">
-    <a href="https://instagram.com" target="_blank" class="link-instagram-card">
-         <i class="fa-brands fa-instagram"></i> @8dobemoficial
-     </a>
+<!-- O "card" que vai guardar todas as informações -->
+<div class="card">
+    <!-- Imagem de perfil -->
+    <img src="img/profile.jpg" alt="Foto de Perfil" class="foto-perfil">
+    
+    <h1>INSCREVA-SE</h1>
+    <div class="subtitulo">
+        <p>Evento de Graffiti</p>
+        <h2>Cabeças vão Rolar</h2>
+    </div>
 
-  <!-- Links das redes sociais -->
-         <div class="links">
-             <a href="#" target="_blank">Grupo no Whats</a>
-             <a href="#" target="_blank">Fale com a Crew</a>
-         </div>
+    <!-- Link do Instagram com ícone dentro do Card -->
+    <div class="instagram-card-container">
+        <a href="https://instagram.com" target="_blank" class="link-instagram-card">
+            <i class="fa-brands fa-instagram"></i> @8dobemoficial
+        </a>
+    </div>
+
+    <!-- Links das redes sociais -->
+    <div class="links">
+        <a href="#" target="_blank">Grupo no Whats</a>
+        <a href="#" target="_blank">Fale com a Crew</a>
+    </div>
+
+    <!-- Carrossel de Imagens em Looping -->
+    <p class="titulo-Projetos">Primeira edição:</p>
+    <div class="carrossel-container">
+        <div class="carrossel-track">
+            <img src="img/loop/01.jpg" onclick="abrirPopup(this)">
+            <img src="img/loop/02.jpg" onclick="abrirPopup(this)">
+            <img src="img/loop/03.jpg" onclick="abrirPopup(this)">
+            <img src="img/loop/04.jpg" onclick="abrirPopup(this)">
+            <!-- Repetição para o loop infinito -->
+            <img src="img/loop/01.jpg" onclick="abrirPopup(this)">
+            <img src="img/loop/02.jpg" onclick="abrirPopup(this)">
+            <img src="img/loop/03.jpg" onclick="abrirPopup(this)">
+            <img src="img/loop/04.jpg" onclick="abrirPopup(this)">
+        </div>
+    </div>
+    
+    <!-- --- FORMULÁRIO DE CONTATO (ESTILO IDÊNTICO AO CARD) --- -->
+    <div class="formulario-contato">
+        <h3>Contato / Inscrição</h3>
+        <form id="formWhatsApp" onsubmit="enviarParaWhatsApp(event)">
+            <div class="campo-grupo">
+                <input type="text" id="nome" placeholder="Seu Nome" required>
+            </div>
+
+            <div class="campo-grupo">
+                <input type="text" id="assunto" placeholder="Assunto (Ex: Inscrição)" required>
+            </div>
+
+            <div class="campo-grupo">
+                <input type="tel" id="telefone" placeholder="Telefone para retorno" required>
+            </div>
+
+            <div class="campo-grupo">
+                <textarea id="mensagem" rows="3" placeholder="Sua Mensagem..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-enviar-whats">
+                <i class="fa-brands fa-whatsapp"></i> Enviar para o Whats
+            </button>
+        </form>
+    </div>
 
 </div>
-<!-- NOVO: Carrossel de Imagens em Looping -->
-         <p class="titulo-Projetos">Primeira ediçao:</p>
-         <div class="carrossel-container">
-             <div class="carrossel-track">
-                 <!-- Imagens do loop (Coloquei 3 imagens diferentes e repeti para o efeito infinito) -->
-                 <img src="img/loop/01.jpg" onclick="abrirPopup(this)">
-                 <img src="img/loop/02.jpg" onclick="abrirPopup(this)">
-                 <img src="img/loop/03.jpg" onclick="abrirPopup(this)">
- 		<img src="img/loop/04.jpg" onclick="abrirPopup(this)">
-                 <!-- Repetição das imagens para criar a ilusão de loop infinito -->
-                 <img src="img/loop/01.jpg" onclick="abrirPopup(this)">
-                 <img src="img/loop/02.jpg" onclick="abrirPopup(this)">
-                 <img src="img/loop/03.jpg" onclick="abrirPopup(this)">
- 		<img src="img/loop/04.jpg" onclick="abrirPopup(this)">
-             </div>
-         </div>
-         
-       
-     </div>
-<!-- O código anterior do card e do carrossel continua igual, mas adicione este bloco no final da página, antes do </body> -->
 
 <!-- Estrutura do Pop-up (inicialmente invisível) -->
 <div id="meuPopup" class="popup-overlay" onclick="fecharPopup()">
-     <div class="popup-conteudo" onclick="event.stopPropagation()">
-         <span class="botao-fechar" onclick="fecharPopup()">&times;</span>
-         <img id="imagemPopup" src="" alt="Imagem Ampliada">
-     </div>
+    <div class="popup-conteudo" onclick="event.stopPropagation()">
+        <span class="botao-fechar" onclick="fecharPopup()">&times;</span>
+        <img id="imagemPopup" src="" alt="Imagem Ampliada">
+    </div>
 </div>
 
-<!-- JavaScript para fazer a mágica acontecer -->
+<!-- JavaScript para envio -->
 <script>
-     function abrirPopup(elementoImagem) {
-         // Pega o link da imagem que foi clicada
-         const linkImagem = elementoImagem.src;
-         // Coloca esse link dentro da imagem do pop-up
-         document.getElementById('imagemPopup').src = linkImagem;
-         // Mostra o pop-up na tela
-         document.getElementById('meuPopup').style.display = 'flex';
-     }
+    function abrirPopup(elementoImagem) {
+        const linkImagem = elementoImagem.src;
+        document.getElementById('imagemPopup').src = linkImagem;
+        document.getElementById('meuPopup').style.display = 'flex';
+    }
 
-     function fecharPopup() {
-         // Esconde o pop-up
-         document.getElementById('meuPopup').style.display = 'none';
-     }
+    function fecharPopup() {
+        document.getElementById('meuPopup').style.display = 'none';
+    }
+
+    function enviarParaWhatsApp(event) {
+        event.preventDefault();
+
+        // ⚠️ INSIRA O NÚMERO DO WHATSAPP DO GRUPO OU ADM AQUI:
+        const numeroWhatsApp = "5500000000000"; 
+
+        const nome = document.getElementById('nome').value;
+        const assunto = document.getElementById('assunto').value;
+        const telefone = document.getElementById('telefone').value;
+        const mensagem = document.getElementById('mensagem').value;
+
+        const textoMensagem = `*Nova Inscrição - Cabeças Vão Rolar*%0A%0A` +
+                              `*Nome:* ${nome}%0A` +
+                              `*Assunto:* ${assunto}%0A` +
+                              `*Telefone:* ${telefone}%0A` +
+                              `*Mensagem:* ${mensagem}`;
+
+        const urlWhatsApp = `https://whatsapp.com{numeroWhatsApp}&text=${textoMensagem}`;
+        window.open(urlWhatsApp, '_blank');
+    }
 </script>
 
-<!-- --- NOVO: Rodapé com Ícones de Redes Sociais --- -->
+<!-- Rodapé Fixo -->
 <footer class="rodape-fixo">
-     <div class="rodape-conteudo">
-         <p>© 2026 Meu Cartão Digital. Todos os direitos reservados.</p>
-         
-         <div class="icones-contato">
-             <!-- Link do WhatsApp (Substitua o número 5500000000000 pelo seu com DDD) -->
-             <a href="https://wa.me" target="_blank" class="icone-wa" title="Fale no WhatsApp">
-                 <i class="fa-brands fa-whatsapp"></i>
-             </a>
-             
-             <!-- Link do Instagram (Substitua 'seu_perfil' pelo seu nome de usuário) -->
-             <a href="https://instagram.com" target="_blank" class="icone-ig" title="Siga no Instagram">
-                 <i class="fa-brands fa-instagram"></i>
-             </a>
-         </div>
-     </div>
+    <div class="rodape-conteudo">
+        <p>© 2026 Meu Cartão Digital. Todos os direitos reservados.</p>
+        <div class="icones-contato">
+            <a href="#" target="_blank" class="icone-wa" title="Fale no WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="icone-ig" title="Siga no Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+    </div>
 </footer>
 
 </body>
