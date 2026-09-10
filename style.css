@@ -1,16 +1,16 @@
-/* 1. Modificação do Body para aceitar o fundo absoluto */
+/* --- CONFIGURAÇÕES GERAIS --- */
 body {
-    position: relative; /* Permite posicionar a imagem de fundo atrás dele */
+    position: relative;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Permite que a tela cresça caso necessário */
     margin: 0;
-    overflow: hidden; /* Evita barras de rolagem indesejadas */
+    padding: 120px 20px 80px 20px; /* Margens para não bater na logo do topo nem no rodapé */
+    box-sizing: border-box;
 }
 
-/* 2. NOVO: Cria a imagem de fundo com transparência que preenche a tela */
 body::before {
     content: "";
     position: fixed;
@@ -18,51 +18,52 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1; /* Garante que a imagem fique atrás de todo o conteúdo */
-    
-    /* Substitua o link abaixo pela URL da sua imagem de preferência */
-    background-image: url('./img/background.jpg');
-    background-position: center; /* Centraliza a imagem na tela */
-    background-repeat: no-repeat; /* Não deixa a imagem se repetir */
-    background-size: cover; /* Faz a imagem cobrir a tela inteira sem distorcer */
-    
-    opacity: 1; /* Define a transparência (0.0 totalmente invisível a 1.0 totalmente opaco) */
+    z-index: -1;
+    background-image: url('C:/Users/HP/Desktop/teste/img/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-/* 2. Estilização do Card (Bordas, fundo e sombras) */
+/* --- ESTILIZAÇÃO DO CARD --- */
 .card {
-    background-color: white; /* Fundo do cartão branco */
-    padding: 15px; /* Espaço interno para o texto não colar na borda */
-    border-radius: 15px; /* Bordas arredondadas do cartão */
-    text-align: center; /* Centraliza os textos dentro do card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor */
-    width: 250px; /* Largura fixa do cartão */
-opacity: 1; /* Define a transparência (0.0 totalmente invisível a 1.0 totalmente opaco) */
-
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo sutilmente transparente para o estilo */
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 320px; /* Largura ideal para PC e celular */
+    box-sizing: border-box;
 }
 
-/* 3. Ajustes na Imagem (Tamanho e Arredondamento) */
+/* Ajustes na Imagem */
 .foto-perfil {
-    width: 100px; /* Define a largura da imagem */
-    height: 100px; /* Define a altura da imagem */
-    border-radius: 50%; /* Deixa a imagem perfeitamente redonda */
-    object-fit: cover; /* Garante que a foto não fique distorcida */
-    border: 3px solid #0070f3; /* Adiciona uma borda azul ao redor da foto */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0070f3;
 }
 
-/* 4. Estilização dos Links */
+/* Estilização dos Links */
 .links a {
-    display: block; /* Faz cada link ficar em uma linha nova */
-    background-color: #0070f3; /* Cor azul de fundo do botão */
-    color: white; /* Cor do texto */
-    padding: 10px; /* Espaçamento interno do botão */
-    margin-top: 10px; /* Espaço entre os botões */
-    text-decoration: none; /* Remove o sublinhado padrão do link */
-    border-radius: 5px; /* Arredonda as pontas dos botões */
+    display: block;
+    background-color: #0070f3;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.links a:hover {
+    background-color: #0056b3;
 }
 
 /* --- CÓDIGO DO CARROSSEL EM LOOPING --- */
-
 .titulo-Projetos {
     font-size: 14px;
     color: #666;
@@ -71,7 +72,6 @@ opacity: 1; /* Define a transparência (0.0 totalmente invisível a 1.0 totalmen
     font-weight: bold;
 }
 
-/* Janela do carrossel: esconde o que passa das bordas */
 .carrossel-container {
     width: 100%;
     overflow: hidden;
@@ -81,182 +81,232 @@ opacity: 1; /* Define a transparência (0.0 totalmente invisível a 1.0 totalmen
     margin-bottom: 15px;
 }
 
-/* Faixa que segura as imagens lado a lado */
 .carrossel-track {
     display: flex;
-    width: calc(80px * 6 + 60px); /* Largura total: (tamanho da imagem * quantidade) + margens */
-    gap: 10px; /* Espaço entre as imagens */
-    animation: rolarLoop 10s linear infinite; /* Ativa a animação infinita de 10 segundos */
+    width: calc(80px * 8 + 80px);
+    gap: 10px;
+    animation: rolarLoop 10s linear infinite;
 }
 
-/* Estilo individual de cada foto do carrossel */
 .carrossel-track img {
     width: 80px;
     height: 60px;
     border-radius: 4px;
     object-fit: cover;
+    cursor: pointer;
 }
 
-/* Regra da animação: move a faixa para a esquerda */
 @keyframes rolarLoop {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        /* Move exatamente o tamanho das 3 primeiras imagens + espacamento */
-        transform: translateX(calc(-80px * 3 - 30px)); 
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-80px * 4 - 40px)); }
 }
-/* --- CÓDIGO DO POP-UP (LIGHTBOX) --- */
 
-/* Fundo escuro que cobre a tela inteira */
+/* --- CÓDIGO DO POP-UP (Ajustado para Celular) --- */
 .popup-overlay {
-    display: none; /* Começa escondido */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente */
-    z-index: 1000; /* Garante que fica na frente de tudo */
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 }
 
-/* Caixa do conteúdo com as medidas exatas de 500x800px */
 .popup-conteudo {
     position: relative;
-    width: 500px;
-    height: 800px;
+    width: 100%;
+    max-width: 500px;
+    height: 80vh; /* Se adapta dinamicamente à tela do celular */
     background-color: #000;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
-/* Faz a imagem preencher perfeitamente o espaço de 500x800px */
 .popup-conteudo img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ajusta a imagem sem distorcer */
+    object-fit: contain; /* Ajusta a foto para não cortar em telas menores */
 }
 
-/* Botão de fechar (X) no canto superior direito */
 .botao-fechar {
     position: absolute;
-    top: 15px;
-    right: 20px;
+    top: 10px;
+    right: 15px;
     color: white;
     font-size: 35px;
     font-weight: bold;
     cursor: pointer;
     z-index: 1010;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    transition: transform 0.2s;
 }
 
-.botao-fechar:hover {
-    transform: scale(1.2); /* Aumenta levemente ao passar o mouse */
-}
-
-/* --- CÓDIGO DA MARCA NO TOPO ESQUERDO --- */
-
+/* --- CÓDIGO DA MARCA NO TOPO --- */
 .marca-topo {
-    position: fixed; /* Fixa no canto da tela */
-    top: 20px;       /* Distância do topo */
-    left: 40px;      /* Distância da esquerda */
-    z-index: 100;    /* Garante que fica na frente do fundo */
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza por padrão em telas pequenas */
+    z-index: 100;
 }
-
-/* Controla o tamanho e a exibição da imagem da logo */
 .marca-topo img {
-    height: 90px;      /* Altura ideal para uma logo discreta. Você pode aumentar ou diminuir aqui */
-    width: auto;       /* Ajusta a largura proporcionalmente para não distorcer */
+    height: 70px;
+    width: auto;
     display: block;
     object-fit: contain;
 }
 
 /* --- CÓDIGO DO RODAPÉ FIXO --- */
-
 .rodape-fixo {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100vw;
-    background-color: #111111; /* Preto fosco elegante */
+    background-color: #111111;
     color: #ffffff;
-    padding: 15px 0;
-    z-index: 100; /* Fica na frente do fundo */
-    font-family: Arial, sans-serif;
+    padding: 12px 0;
+    z-index: 100;
 }
 
 .rodape-conteudo {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* Separa o texto dos ícones */
+    justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 20px;
 }
 
 .rodape-conteudo p {
     margin: 0;
-    font-size: 13px;
-    color: #aaaaaa; /* Texto cinza claro para contraste suave */
+    font-size: 11px;
+    color: #aaaaaa;
 }
 
-/* Container dos ícones */
 .icones-contato {
     display: flex;
-    gap: 20px; /* Espaço entre os dois ícones */
+    gap: 15px;
 }
 
-/* Estilo geral dos links dos ícones */
 .icones-contato a {
     color: #ffffff;
-    font-size: 24px; /* Tamanho dos ícones */
-    transition: transform 0.2s, color 0.2s; /* Transição suave na animação */
+    font-size: 20px;
     text-decoration: none;
 }
 
-/* Efeito Hover: WhatsApp fica verde ao passar o mouse */
-.icones-contato a.icone-wa:hover {
-    color: #25D366;
-    transform: scale(1.15);
-}
-
-/* Efeito Hover: Instagram fica rosa/gradiente ao passar o mouse */
-.icones-contato a.icone-ig:hover {
-    color: #E1306C;
-    transform: scale(1.15);
-}
-
-/* --- ESTILO DO INSTAGRAM DENTRO DO CARD --- */
-
+/* --- INSTAGRAM DENTRO DO CARD --- */
 .instagram-card-container {
-    margin-top: 0px;
-    margin-bottom: 10px; /* Cria um espaçamento antes de "Primeira edição:" */
+    margin-bottom: 10px;
 }
-
 .link-instagram-card {
     display: inline-flex;
     align-items: center;
-    gap: 0px; /* Espaço entre o ícone e o texto */
-    color: #e1306c; /* Cor clássica do Instagram */
-    font-size: 16px;
+    color: #e1306c;
+    font-size: 14px;
     font-weight: bold;
-    text-decoration: none; /* Remove o sublinhado do link */
-    padding: 8px 8px;
-    border: 2px solid #e1306c; /* Cria uma borda fina ao redor */
-    border-radius: 20px; /* Deixa o botão com as pontas arredondadas (estilo pílula) */
-    transition: all 0.3s ease; /* Deixa a animação do hover suave */
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 2px solid #e1306c;
+    border-radius: 20px;
 }
 
-/* Efeito Hover: Inverte as cores quando passa o mouse por cima */
-.link-instagram-card:hover {
-    background-color: #e1306c;
-    color: #ffffff;
-    transform: translateY(-2px); /* Dá um leve efeito de flutuar */
-    box-shadow: 0 4px 10px rgba(225, 48, 108, 0.3); /* Adiciona uma sombra rosa */
+/* --- FORMULÁRIO DE CONTATO --- */
+.formulario-contato {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+.formulario-contato h3 {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+.campo-grupo {
+    margin-bottom: 8px;
+    width: 100%;
+}
+.campo-grupo input, 
+.campo-grupo textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+.campo-grupo input:focus, 
+.campo-grupo textarea:focus {
+    border-color: #0070f3;
+    outline: none;
+    background-color: #fff;
+}
+.btn-enviar-whats {
+    width: 100%;
+    padding: 10px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
+/* =======================================================
+   📱 REGRAS EXCLUSIVAS PARA TELAS MAIORES (PCs e Laptops)
+   ======================================================= */
+@media (min-width: 768px) {
+    body {
+        overflow: hidden; /* Evita rolagem da página no PC */
+        padding: 0;
+    }
+    
+    /* Reposiciona a logo no canto superior esquerdo no PC */
+    .marca-topo {
+        left: 40px;
+        transform: none;
+    }
+    
+    .marca-topo img {
+        height: 90px;
+    }
+
+    .rodape-conteudo {
+        padding: 0 40px;
+    }
+
+    .rodape-conteudo p {
+        font-size: 13px;
+    }
+
+    .icones-contato a {
+        font-size: 24px;
+        transition: transform 0.2s, color 0.2s;
+    }
+    .icones-contato a.icone-wa:hover { color: #25D366; transform: scale(1.15); }
+    .icones-contato a.icone-ig:hover { color: #E1306C; transform: scale(1.15); }
+    
+    .link-instagram-card {
+        transition: all 0.3s ease;
+    }
+    .link-instagram-card:hover {
+        background-color: #e1306c;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(225, 48, 108, 0.3);
+    }
+    .btn-enviar-whats:hover {
+        background-color: #0056b3;
+    }
+}
