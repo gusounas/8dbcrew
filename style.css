@@ -11,18 +11,26 @@ body {
     box-sizing: border-box;
 }
 
+/* Cria a imagem de fundo com comportamento estático e responsivo */
 body::before {
     content: "";
-    position: fixed;
+    position: fixed; /* Mantém a imagem estática na tela inteira */
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
-    background-image: url('./img/background.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    z-index: -1; /* Garante que fique atrás de todo o conteúdo */
+    
+    /* Caminho da sua imagem */
+    background-image: url('C:/Users/HP/Desktop/teste/img/background.jpg');
+    
+    /* MÁGICA DA RESPONSIVIDADE E ESTABILIDADE: */
+    background-attachment: fixed; /* Força o fundo a ficar preso/estático (essencial para PC e alguns navegadores) */
+    background-position: center center; /* Centraliza o foco da imagem na horizontal e vertical */
+    background-repeat: no-repeat; /* Impede a imagem de se duplicar em telas compridas */
+    background-size: cover; /* Faz a imagem cobrir a tela inteira se ajustando dinamicamente */
+    
+    opacity: 1; 
 }
 
 /* --- ESTILIZAÇÃO DO CARD --- */
