@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cabeças vao rolar</title>
+    <!-- Linha que conecta o HTML ao CSS -->
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+<!-- Caixa da Marca com Imagem Estática -->
+<div class="marca-topo">
+    <img src="img/logo.png" alt="Logotipo da Marca">
+</div>
+<!-- NOVO: Caixa da Marca no Topo Esquerdo -->
+    <div class="marca-topo">
+       
+        
+        <!-- ...OU substituir pela URL de uma imagem/logotipo tirando as barras de comentário abaixo: -->
+        <!-- <img src="C:\Users\HP\Desktop\teste\img\logo.png" alt="Logo"> -->
+    </div>
+
+    <!-- O "card" que vai guardar todas as informações -->
+    <div class="card">
+        <!-- Imagem de perfil (usando um link temporário da internet) -->
+        <img src="C:\Users\HP\Desktop\teste\img\profile.jpg" alt="Foto de Perfil" class="foto-perfil">
+        
+        <h1>INSCREVA-SE</h1>
+        <p class="subtitulo">Evento de Graffiti 
+				<br><h2>Cabeças vao Rolar</h2></br>
+	</p>
+<!-- NOVO: Link do Instagram com ícone dentro do Card -->
+<div class="instagram-card-container">
+    <a href="https://instagram.com" target="_blank" class="link-instagram-card">
+        <i class="fa-brands fa-instagram"></i> @8dobemoficial
+    </a>
+
+ <!-- Links das redes sociais -->
+        <div class="links">
+            <a href="#" target="_blank">Grupo no Whats</a>
+            <a href="#" target="_blank">Fale com a Crew</a>
+        </div>
+
+</div>
+<!-- NOVO: Carrossel de Imagens em Looping -->
+        <p class="titulo-Projetos">Primeira ediçao:</p>
+        <div class="carrossel-container">
+            <div class="carrossel-track">
+                <!-- Imagens do loop (Coloquei 3 imagens diferentes e repeti para o efeito infinito) -->
+                <img src="C:\Users\HP\Desktop\teste\img\loop\01.jpg"onclick="abrirPopup(this)"onclick="abrirPopup(this)">
+                <img src="C:\Users\HP\Desktop\teste\img\loop\02.jpg"onclick="abrirPopup(this)"onclick="abrirPopup(this)">
+                <img src="C:\Users\HP\Desktop\teste\img\loop\03.jpg"onclick="abrirPopup(this)"onclick="abrirPopup(this)">
+		<img src="C:\Users\HP\Desktop\teste\img\loop\04.jpg"onclick="abrirPopup(this)"onclick="abrirPopup(this)">
+                <!-- Repetição das imagens para criar a ilusão de loop infinito -->
+                <img src="C:\Users\HP\Desktop\teste\img\loop\01.jpg"onclick="abrirPopup(this)"onclick="abrirPopup(this)">
+                <img src="C:\Users\HP\Desktop\teste\img\loop\02.jpg"onclick="abrirPopup(this)"onclick="abrirPopup(this)">
+                <img src="C:\Users\HP\Desktop\teste\img\loop\03.jpg"onclick="abrirPopup(this)"onclick="abrirPopup(this)">
+		<img src="C:\Users\HP\Desktop\teste\img\loop\04.jpg"onclick="abrirPopup(this)"onclick="abrirPopup(this)">
+            </div>
+        </div>
+        
+      
+    </div>
+<!-- O código anterior do card e do carrossel continua igual, mas adicione este bloco no final da página, antes do </body> -->
+
+<!-- Estrutura do Pop-up (inicialmente invisível) -->
+<div id="meuPopup" class="popup-overlay" onclick="fecharPopup()">
+    <div class="popup-conteudo" onclick="event.stopPropagation()">
+        <span class="botao-fechar" onclick="fecharPopup()">&times;</span>
+        <img id="imagemPopup" src="" alt="Imagem Ampliada">
+    </div>
+</div>
+
+<!-- JavaScript para fazer a mágica acontecer -->
+<script>
+    function abrirPopup(elementoImagem) {
+        // Pega o link da imagem que foi clicada
+        const linkImagem = elementoImagem.src;
+        // Coloca esse link dentro da imagem do pop-up
+        document.getElementById('imagemPopup').src = linkImagem;
+        // Mostra o pop-up na tela
+        document.getElementById('meuPopup').style.display = 'flex';
+    }
+
+    function fecharPopup() {
+        // Esconde o pop-up
+        document.getElementById('meuPopup').style.display = 'none';
+    }
+</script>
+
+<!-- --- NOVO: Rodapé com Ícones de Redes Sociais --- -->
+<footer class="rodape-fixo">
+    <div class="rodape-conteudo">
+        <p>© 2026 Meu Cartão Digital. Todos os direitos reservados.</p>
+        
+        <div class="icones-contato">
+            <!-- Link do WhatsApp (Substitua o número 5500000000000 pelo seu com DDD) -->
+            <a href="https://wa.me" target="_blank" class="icone-wa" title="Fale no WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            
+            <!-- Link do Instagram (Substitua 'seu_perfil' pelo seu nome de usuário) -->
+            <a href="https://instagram.com" target="_blank" class="icone-ig" title="Siga no Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

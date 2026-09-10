@@ -1,0 +1,264 @@
+/* 1. Modificação do Body para aceitar o fundo absoluto */
+body {
+    position: relative; /* Permite posicionar a imagem de fundo atrás dele */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Evita barras de rolagem indesejadas */
+}
+
+/* 2. NOVO: Cria a imagem de fundo com transparência que preenche a tela */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Garante que a imagem fique atrás de todo o conteúdo */
+    
+    /* Substitua o link abaixo pela URL da sua imagem de preferência */
+    background-image: url('C:/Users/HP/Desktop/teste/img/background.jpg');
+    background-position: center; /* Centraliza a imagem na tela */
+    background-repeat: no-repeat; /* Não deixa a imagem se repetir */
+    background-size: cover; /* Faz a imagem cobrir a tela inteira sem distorcer */
+    
+    opacity: 1; /* Define a transparência (0.0 totalmente invisível a 1.0 totalmente opaco) */
+}
+
+/* 2. Estilização do Card (Bordas, fundo e sombras) */
+.card {
+    background-color: white; /* Fundo do cartão branco */
+    padding: 15px; /* Espaço interno para o texto não colar na borda */
+    border-radius: 15px; /* Bordas arredondadas do cartão */
+    text-align: center; /* Centraliza os textos dentro do card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor */
+    width: 250px; /* Largura fixa do cartão */
+opacity: 1; /* Define a transparência (0.0 totalmente invisível a 1.0 totalmente opaco) */
+
+}
+
+/* 3. Ajustes na Imagem (Tamanho e Arredondamento) */
+.foto-perfil {
+    width: 100px; /* Define a largura da imagem */
+    height: 100px; /* Define a altura da imagem */
+    border-radius: 50%; /* Deixa a imagem perfeitamente redonda */
+    object-fit: cover; /* Garante que a foto não fique distorcida */
+    border: 3px solid #0070f3; /* Adiciona uma borda azul ao redor da foto */
+}
+
+/* 4. Estilização dos Links */
+.links a {
+    display: block; /* Faz cada link ficar em uma linha nova */
+    background-color: #0070f3; /* Cor azul de fundo do botão */
+    color: white; /* Cor do texto */
+    padding: 10px; /* Espaçamento interno do botão */
+    margin-top: 10px; /* Espaço entre os botões */
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    border-radius: 5px; /* Arredonda as pontas dos botões */
+}
+
+/* --- CÓDIGO DO CARROSSEL EM LOOPING --- */
+
+.titulo-Projetos {
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Janela do carrossel: esconde o que passa das bordas */
+.carrossel-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Faixa que segura as imagens lado a lado */
+.carrossel-track {
+    display: flex;
+    width: calc(80px * 6 + 60px); /* Largura total: (tamanho da imagem * quantidade) + margens */
+    gap: 10px; /* Espaço entre as imagens */
+    animation: rolarLoop 10s linear infinite; /* Ativa a animação infinita de 10 segundos */
+}
+
+/* Estilo individual de cada foto do carrossel */
+.carrossel-track img {
+    width: 80px;
+    height: 60px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+/* Regra da animação: move a faixa para a esquerda */
+@keyframes rolarLoop {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move exatamente o tamanho das 3 primeiras imagens + espacamento */
+        transform: translateX(calc(-80px * 3 - 30px)); 
+    }
+}
+/* --- CÓDIGO DO POP-UP (LIGHTBOX) --- */
+
+/* Fundo escuro que cobre a tela inteira */
+.popup-overlay {
+    display: none; /* Começa escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente */
+    z-index: 1000; /* Garante que fica na frente de tudo */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Caixa do conteúdo com as medidas exatas de 500x800px */
+.popup-conteudo {
+    position: relative;
+    width: 500px;
+    height: 800px;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Faz a imagem preencher perfeitamente o espaço de 500x800px */
+.popup-conteudo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta a imagem sem distorcer */
+}
+
+/* Botão de fechar (X) no canto superior direito */
+.botao-fechar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1010;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    transition: transform 0.2s;
+}
+
+.botao-fechar:hover {
+    transform: scale(1.2); /* Aumenta levemente ao passar o mouse */
+}
+
+/* --- CÓDIGO DA MARCA NO TOPO ESQUERDO --- */
+
+.marca-topo {
+    position: fixed; /* Fixa no canto da tela */
+    top: 20px;       /* Distância do topo */
+    left: 40px;      /* Distância da esquerda */
+    z-index: 100;    /* Garante que fica na frente do fundo */
+}
+
+/* Controla o tamanho e a exibição da imagem da logo */
+.marca-topo img {
+    height: 90px;      /* Altura ideal para uma logo discreta. Você pode aumentar ou diminuir aqui */
+    width: auto;       /* Ajusta a largura proporcionalmente para não distorcer */
+    display: block;
+    object-fit: contain;
+}
+
+/* --- CÓDIGO DO RODAPÉ FIXO --- */
+
+.rodape-fixo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-color: #111111; /* Preto fosco elegante */
+    color: #ffffff;
+    padding: 15px 0;
+    z-index: 100; /* Fica na frente do fundo */
+    font-family: Arial, sans-serif;
+}
+
+.rodape-conteudo {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Separa o texto dos ícones */
+    align-items: center;
+    padding: 0 40px;
+}
+
+.rodape-conteudo p {
+    margin: 0;
+    font-size: 13px;
+    color: #aaaaaa; /* Texto cinza claro para contraste suave */
+}
+
+/* Container dos ícones */
+.icones-contato {
+    display: flex;
+    gap: 20px; /* Espaço entre os dois ícones */
+}
+
+/* Estilo geral dos links dos ícones */
+.icones-contato a {
+    color: #ffffff;
+    font-size: 24px; /* Tamanho dos ícones */
+    transition: transform 0.2s, color 0.2s; /* Transição suave na animação */
+    text-decoration: none;
+}
+
+/* Efeito Hover: WhatsApp fica verde ao passar o mouse */
+.icones-contato a.icone-wa:hover {
+    color: #25D366;
+    transform: scale(1.15);
+}
+
+/* Efeito Hover: Instagram fica rosa/gradiente ao passar o mouse */
+.icones-contato a.icone-ig:hover {
+    color: #E1306C;
+    transform: scale(1.15);
+}
+
+/* --- ESTILO DO INSTAGRAM DENTRO DO CARD --- */
+
+.instagram-card-container {
+    margin-top: 0px;
+    margin-bottom: 10px; /* Cria um espaçamento antes de "Primeira edição:" */
+}
+
+.link-instagram-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0px; /* Espaço entre o ícone e o texto */
+    color: #e1306c; /* Cor clássica do Instagram */
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none; /* Remove o sublinhado do link */
+    padding: 8px 8px;
+    border: 2px solid #e1306c; /* Cria uma borda fina ao redor */
+    border-radius: 20px; /* Deixa o botão com as pontas arredondadas (estilo pílula) */
+    transition: all 0.3s ease; /* Deixa a animação do hover suave */
+}
+
+/* Efeito Hover: Inverte as cores quando passa o mouse por cima */
+.link-instagram-card:hover {
+    background-color: #e1306c;
+    color: #ffffff;
+    transform: translateY(-2px); /* Dá um leve efeito de flutuar */
+    box-shadow: 0 4px 10px rgba(225, 48, 108, 0.3); /* Adiciona uma sombra rosa */
+}
+
+
+
