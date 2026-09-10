@@ -7,7 +7,7 @@
     <!-- Linha que conecta o HTML ao CSS -->
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome para os ícones funcionarem -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -121,7 +121,7 @@
                               `*Telefone:* ${telefone}%0A` +
                               `*Mensagem:* ${mensagem}`;
 
-        const urlWhatsApp = `https://whatsapp.com{numeroWhatsApp}&text=${textoMensagem}`;
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${textoMensagem}`;
         window.open(urlWhatsApp, '_blank');
     }
 </script>
