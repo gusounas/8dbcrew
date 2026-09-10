@@ -22,7 +22,7 @@ body::before {
     z-index: -1; /* Garante que fique atrás de todo o conteúdo */
     
     /* Caminho da sua imagem */
-    background-image: url('C:/Users/HP/Desktop/teste/img/background.jpg');
+    background-image: url('img/background.jpg');
     
     /* MÁGICA DA RESPONSIVIDADE E ESTABILIDADE: */
     background-attachment: fixed; /* Força o fundo a ficar preso/estático (essencial para PC e alguns navegadores) */
